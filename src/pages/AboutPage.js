@@ -17,10 +17,12 @@ const AboutPage = () => {
                   <div className="underline"></div>
                </div>
                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Labore non nihil architecto dolorem earum ipsa officia maxime
-                  similique inventore quo saepe soluta, corrupti ipsam dicta
-                  quaerat aliquam temporibus quia consequatur.
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et
+                  rem molestiae enim id, nesciunt quod ab quibusdam aperiam non,
+                  architecto ipsa in necessitatibus. Consectetur consequatur
+                  quis voluptatem numquam vero quaerat, iste hic quae odit.
+                  Rerum beatae odio consectetur aliquam! A, illo beatae. Qui
+                  nesciunt necessitatibus quisquam dolore id nostrum quos.
                </p>
             </article>
          </Wrapper>
@@ -31,6 +33,7 @@ const AboutPage = () => {
 const Wrapper = styled.section`
    display: grid;
    gap: 4rem;
+
    img {
       width: 100%;
       display: block;

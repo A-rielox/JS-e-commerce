@@ -53,6 +53,7 @@ const NavContainer = styled.nav`
       margin: 0 auto;
       max-width: var(--max-width);
    }
+
    .nav-header {
       display: flex;
       align-items: center;

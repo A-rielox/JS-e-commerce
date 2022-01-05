@@ -25,6 +25,7 @@ const Wrapper = styled.footer`
    span {
       color: var(--clr-primary-5);
    }
+
    h5 {
       color: var(--clr-white);
       margin: 0.1rem;

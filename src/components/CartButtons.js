@@ -41,6 +41,7 @@ const Wrapper = styled.div`
 
       align-items: center;
    }
+
    .cart-container {
       display: flex;
       align-items: center;
