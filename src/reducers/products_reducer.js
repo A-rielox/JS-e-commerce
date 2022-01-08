@@ -4,9 +4,9 @@ import {
    GET_PRODUCTS_BEGIN,
    GET_PRODUCTS_SUCCESS,
    GET_PRODUCTS_ERROR,
-   /*GET_SINGLE_PRODUCT_BEGIN,
+   GET_SINGLE_PRODUCT_BEGIN,
    GET_SINGLE_PRODUCT_SUCCESS,
-   GET_SINGLE_PRODUCT_ERROR, */
+   GET_SINGLE_PRODUCT_ERROR,
 } from '../actions';
 
 const products_reducer = (state, action) => {
@@ -39,9 +39,31 @@ const products_reducer = (state, action) => {
       return { ...state, products_loading: false, products_error: true };
    }
 
-   return state;
+   if (action.type === GET_SINGLE_PRODUCT_BEGIN) {
+      return {
+         ...state,
+         single_product_loading: true,
+         single_product_error: false, // xsi hay alguno antiguo
+      };
+   }
 
-   // throw new Error(`No Matching "${action.type}" - action type`);
+   if (action.type === GET_SINGLE_PRODUCT_BEGIN) {
+      return {
+         ...state,
+         single_product_loading: false,
+         single_product: action.payload,
+      };
+   }
+
+   if (action.type === GET_SINGLE_PRODUCT_ERROR) {
+      return {
+         ...state,
+         single_product_loading: false,
+         single_product_error: true,
+      };
+   }
+
+   throw new Error(`No Matching "${action.type}" - action type`);
 };
 
 export default products_reducer;
