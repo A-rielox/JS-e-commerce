@@ -1,8 +1,33 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const ProductImages = () => {
-   return <h4>product images</h4>;
+// como las images las carga de la API, en un principio son "undefined", xeso pa q no mande error el useState xq se le pasa undefined, es q se le pone un valor defaul ( en este cado de array vacio )
+// 📌 const ProductImages = ({ images = [{ url: '' }] }) => {...
+//para q tenga de donde agarrar la prop "url" y no mande error
+
+const ProductImages = ({ images = [] }) => {
+   const [main, setMain] = useState(images[0]);
+
+   return (
+      <Wrapper>
+         {/* en lugar de .? el hace 📌 */}
+         <img src={main?.url} alt="main image" className="main" />
+
+         <div className="gallery">
+            {images.map((image, index) => {
+               return (
+                  <img
+                     src={image.url}
+                     alt={image.filename}
+                     key={index}
+                     onClick={() => setMain(images[index])}
+                     className={`${image.url === main.url ? 'active' : null}`}
+                  />
+               );
+            })}
+         </div>
+      </Wrapper>
+   );
 };
 
 const Wrapper = styled.section`
