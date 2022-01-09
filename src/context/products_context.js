@@ -59,7 +59,7 @@ export const ProductsProvider = ({ children }) => {
 
    // ============ FETCH SINGLE PRODUCT ============
    const fetchSingleProduct = async url => {
-      dispatch({ action: GET_SINGLE_PRODUCT_BEGIN });
+      dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
 
       try {
          const response = await axios(url);

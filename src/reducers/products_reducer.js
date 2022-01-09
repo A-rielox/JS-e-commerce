@@ -47,7 +47,7 @@ const products_reducer = (state, action) => {
       };
    }
 
-   if (action.type === GET_SINGLE_PRODUCT_BEGIN) {
+   if (action.type === GET_SINGLE_PRODUCT_SUCCESS) {
       return {
          ...state,
          single_product_loading: false,
