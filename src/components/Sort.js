@@ -2,8 +2,55 @@ import React from 'react';
 import { useFilterContext } from '../context/filter_context';
 import { BsFillGridFill, BsList } from 'react-icons/bs';
 import styled from 'styled-components';
+
 const Sort = () => {
-   return <h4>sort </h4>;
+   const {
+      filtered_products: products,
+      grid_view,
+      setGridView,
+      setListView,
+      sort,
+      updateSort,
+   } = useFilterContext();
+
+   return (
+      <Wrapper>
+         <div className="btn-container">
+            <button
+               type="button"
+               className={`button ${grid_view ? 'active' : ''}`}
+               onClick={setGridView}
+            >
+               <BsFillGridFill />
+            </button>
+            <button
+               type="button"
+               className={`button ${!grid_view ? 'active' : ''}`}
+               onClick={setListView}
+            >
+               <BsList />
+            </button>
+         </div>
+
+         <p>{products.length} products found</p>
+         <hr />
+         <form>
+            <label htmlFor="sort">sort by </label>
+            <select
+               name="sort"
+               id="sort"
+               className="sort-input"
+               value={sort}
+               onChange={updateSort}
+            >
+               <option value="price-lowest">Price ( Lowest )</option>
+               <option value="price-highest">Price ( Highest)</option>
+               <option value="name-a">Name ( a - z )</option>
+               <option value="name-z">Name ( z - a )</option>
+            </select>
+         </form>
+      </Wrapper>
+   );
 };
 
 const Wrapper = styled.section`
@@ -12,6 +59,7 @@ const Wrapper = styled.section`
    align-items: center;
    margin-bottom: 2rem;
    column-gap: 2rem;
+
    @media (max-width: 576px) {
       display: grid;
       grid-template-columns: 1fr;
