@@ -67,6 +67,10 @@ export const FilterProvider = ({ children }) => {
       if (name === 'category') {
          value = e.target.textContent;
       }
+      // para filtrar colores lo puse con botones y como los buttons no tienen value
+      if (name === 'color') {
+         value = e.target.dataset.color;
+      }
 
       dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
    };

@@ -30,6 +30,7 @@ const Filters = () => {
          <div className="content">
             <form onSubmit={e => e.preventDefault()}>
                {/* search input */}
+               {/* lo q está en name tiene q coincidir con la key en state.filters */}
                <div className="form-control">
                   <input
                      type="text"
@@ -46,6 +47,7 @@ const Filters = () => {
                   <h5>category</h5>
                   <div>
                      {categories.map((c, index) => {
+                        /* lo q está en name tiene q coincidir con la key en state.filters */
                         return (
                            <button
                               key={index}
@@ -63,6 +65,65 @@ const Filters = () => {
                   </div>
                </div>
                {/* end categories */}
+               {/* companies */}
+               <div className="form-control">
+                  <h5>company</h5>
+                  <select
+                     name="company"
+                     value={company}
+                     onChange={updateFilters}
+                     className="company"
+                  >
+                     {companies.map((c, index) => {
+                        return (
+                           <option value={c} key={index}>
+                              {c}
+                           </option>
+                        );
+                     })}
+                  </select>
+               </div>
+               {/* end of companies */}
+               {/* colors */}
+               <div className="form-control">
+                  <h5>colors</h5>
+                  <div className="colors">
+                     {colors.map((c, index) => {
+                        /* lo q está en name tiene q coincidir con la key en state.filters */
+                        if (c === 'all') {
+                           return (
+                              <button
+                                 key="all-btn"
+                                 name="color"
+                                 onClick={updateFilters}
+                                 data-color="all"
+                                 className={`all-btn ${
+                                    color === 'all' ? 'active' : ''
+                                 }`}
+                              >
+                                 all
+                              </button>
+                           );
+                        } else {
+                           return (
+                              <button
+                                 key={index}
+                                 name="color"
+                                 style={{ background: c }}
+                                 onClick={updateFilters}
+                                 data-color={c}
+                                 className={`color-btn ${
+                                    c === color ? 'active' : ''
+                                 }`}
+                              >
+                                 {color === c ? <FaCheck /> : null}
+                              </button>
+                           );
+                        }
+                     })}
+                  </div>
+               </div>
+               {/* end of colors */}
             </form>
          </div>
       </Wrapper>
