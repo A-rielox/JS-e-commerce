@@ -65,14 +65,73 @@ const filter_reducer = (state, action) => {
 
    if (action.type === UPDATE_FILTERS) {
       let { name, value } = action.payload;
-      console.log(action.payload);
 
       return { ...state, filters: { ...state.filters, [name]: value } };
    }
 
    if (action.type === FILTER_PRODUCTS) {
-      console.log('filtro cambiado');
-      return { ...state };
+      const { all_products } = state;
+      let tempProducts = [...all_products];
+      // 👆 para comenzar a filtrar siempre SIEMPRE voy a necesitar empezar con todos los productos, sino el nuevo filtro se aplicaria sobre los q quedan de la filtrada anterior, y TIENE  q ser copia "copia", x q si no al cambiar los 'tempProducts' se cambiaria tambien a 'all_products'
+      // y asi, si tengo un filtro y lo borro, me vuelve a poner todos los prods
+
+      const { text, company, category, color, shipping, price } = state.filters;
+
+      // ====================== FILTERING ======================
+      //text
+      if (text) {
+         tempProducts = tempProducts.filter(prod =>
+            prod.name.toLowerCase().includes(text)
+         );
+         // el hace tempProducts = tempProducts.filter(prod => prod.name.toLowerCase().startsWith(text)) más chingon el mio
+      }
+
+      // category
+      // aqui si ya estaba filtrado por text => agarra esos tempProds y filtra a partir de ese, y asi susecivamente pal resto de los filtros
+      if (category !== 'all') {
+         tempProducts = tempProducts.filter(prod => prod.category === category);
+      }
+
+      // company
+      if (company !== 'all') {
+         tempProducts = tempProducts.filter(prod => prod.company === company);
+      }
+
+      // color
+      if (color !== 'all') {
+         tempProducts = tempProducts.filter(prod =>
+            prod.colors.includes(color)
+         );
+      }
+
+      // price
+      if (price !== 0) {
+         tempProducts = tempProducts.filter(prod => prod.price <= price);
+      }
+
+      // shipping
+      if (shipping) {
+         tempProducts = tempProducts.filter(prod => prod.shipping === true);
+      }
+
+      return { ...state, filtered_products: tempProducts };
+   }
+
+   if (action.type === CLEAR_FILTERS) {
+      return {
+         ...state,
+         filters: {
+            ...state.filters,
+            text: '',
+            company: 'all',
+            category: 'all',
+            color: 'all',
+            // min_price: 0,
+            // max_price: 0,
+            price: state.filters.max_price, // 🧐
+            shipping: false,
+         },
+      };
    }
 
    throw new Error(`No Matching "${action.type}" - action type`);
