@@ -19,7 +19,7 @@ const products_reducer = (state, action) => {
    }
 
    if (action.type === SIDEBAR_CLOSE) {
-      return { ...state, isSideBarOpen: false };
+      return { ...state, isSidebarOpen: false };
    }
 
    if (action.type === GET_PRODUCTS_SUCCESS) {
