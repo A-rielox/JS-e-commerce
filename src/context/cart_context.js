@@ -38,17 +38,23 @@ export const CartProvider = ({ children }) => {
 
    //remove item
    const removeItem = id => {
-      console.log(state.cart);
+      dispatch({ type: REMOVE_CART_ITEM, payload: id });
    };
 
    // toggle amount
-   const toggleAmount = (id, value) => {};
+   const toggleAmount = (id, value) => {
+      dispatch({ type: TOGGLE_CART_ITEM_AMOUNT, payload: { id, value } });
+   };
 
    // clear cart
-   const clearCart = () => {};
+   const clearCart = () => {
+      dispatch({ type: CLEAR_CART });
+   };
 
-   // putting the cart in the local storage
+   // putting the cart in the local storage + otros
    useEffect(() => {
+      dispatch({ type: COUNT_CART_TOTALS });
+
       localStorage.setItem('cart', JSON.stringify(state.cart));
    }, [state.cart]);
 
