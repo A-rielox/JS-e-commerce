@@ -71,8 +71,6 @@ const cart_reducer = (state, action) => {
                }
                return { ...item, amount: newAmount };
             }
-         } else {
-            return item;
          }
          return item;
       });
@@ -81,8 +79,6 @@ const cart_reducer = (state, action) => {
    }
 
    if (action.type === COUNT_CART_TOTALS) {
-      console.log('sacando totales...');
-
       const { total_items, total_amount } = state.cart.reduce(
          (total, cartItem) => {
             const { amount, price } = cartItem;

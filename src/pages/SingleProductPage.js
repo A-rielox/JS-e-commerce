@@ -24,18 +24,22 @@ const SingleProductPage = () => {
       fetchSingleProduct,
    } = useProductsContext();
 
+   // TODO usar useCallback pa poner dependencia "fetchSingleProduct"
    useEffect(() => {
       fetchSingleProduct(`${url}${id}`);
+      // eslint-disable-next-line
    }, [id]);
    console.log(product);
 
    // para q al abtener error me redirija automáticamente a home
+   // TODO usar useCallback pa poner dependencia "history"
    useEffect(() => {
       if (error) {
          setTimeout(() => {
             history.push('/');
          }, 3000);
       }
+      // eslint-disable-next-line
    }, [error]);
 
    if (loading) {
