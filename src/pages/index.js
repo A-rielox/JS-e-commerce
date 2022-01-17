@@ -6,8 +6,10 @@ import Cart from './CartPage';
 import Error from './ErrorPage';
 import Checkout from './CheckoutPage';
 import PrivateRoute from './PrivateRoute';
+import AuthWrapper from './AuthWrapper';
 
 export {
+   AuthWrapper,
    Home,
    Products,
    SingleProduct,
