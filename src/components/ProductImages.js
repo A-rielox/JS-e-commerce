@@ -11,7 +11,7 @@ const ProductImages = ({ images = [] }) => {
    return (
       <Wrapper>
          {/* en lugar de .? el hace 📌 */}
-         <img src={main?.url} alt="main image" className="main" />
+         <img src={main?.url} alt="main" className="main" />
 
          <div className="gallery">
             {images.map((image, index) => {
